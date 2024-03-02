@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.single-col {
+    grid-template-columns: 1fr 0fr 16px;
+
+    &.expanded {
+        grid-template-columns: 1fr 1fr 16px;
+    }
+}

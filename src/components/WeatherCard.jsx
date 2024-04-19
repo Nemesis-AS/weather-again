@@ -31,6 +31,7 @@ const WeatherCard = ({ weatherData }) => {
                         src={`https://openweathermap.org/img/wn/${weatherData ? weatherData.weather[0].icon : "01d"}@4x.png`}
                         alt="Weather Info"
                         className="aspect-square mx-auto"
+                        fetchpriority="high"
                     />
                 </div>
                 <div className="card-text px-4 py-2">

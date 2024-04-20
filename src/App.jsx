@@ -71,7 +71,7 @@ function App() {
 
     return (
         <div
-            className={`h-screen flex flex-col bg-[url('./bg.jpg')] dark:bg-[url('./bg-dark.jpeg')] transition-all duration-300 bg-cover bg-center ${
+            className={`h-screen flex flex-col bg-[url('./bg.avif')] dark:bg-[url('./bg-dark.avif')] transition-all duration-300 bg-cover bg-center ${
                 darkMode ? "dark" : ""
             }`}
         >

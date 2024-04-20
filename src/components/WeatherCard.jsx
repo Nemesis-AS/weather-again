@@ -3,18 +3,18 @@ import React, { useState } from "react";
 const WeatherCard = ({ weatherData }) => {
     const [expanded, setExpanded] = useState(false);
 
-    const handleExpansion = e => {
+    const handleExpansion = (e) => {
         setExpanded(!expanded);
     };
 
-    const formatTime = timestamp => {
+    const formatTime = (timestamp) => {
         const date = new Date(timestamp * 1000);
         return `${date.getHours()}:${date.getMinutes()}`;
     };
 
-    const formatTemp = temp => {
+    const formatTemp = (temp) => {
         return (temp - 273).toFixed(2);
-    }
+    };
 
     return (
         <div
@@ -24,26 +24,47 @@ const WeatherCard = ({ weatherData }) => {
         >
             <div className="flex flex-col min-w-96">
                 <div className="location px-4 py-2 text-2xl font-bold text-center">
-                    <div className="title">{weatherData ? weatherData.name : "<LOCATION>"}</div>
+                    <div className="title">
+                        {weatherData ? weatherData.name : "<LOCATION>"}
+                    </div>
                 </div>
                 <div className="card-icon px-4">
                     <img
-                        src={`https://openweathermap.org/img/wn/${weatherData ? weatherData.weather[0].icon : "01d"}@4x.png`}
+                        src={`https://openweathermap.org/img/wn/${
+                            weatherData ? weatherData.weather[0].icon : "01d"
+                        }@2x.png`}
                         alt="Weather Info"
-                        className="aspect-square mx-auto"
-                        fetchpriority="high"
+                        className="aspect-square mx-auto w-[200px]"
                     />
                 </div>
                 <div className="card-text px-4 py-2">
-                    <div className="text-3xl text-center font-bold">{ weatherData ? weatherData.weather[0].main : "<WEATHER>" }</div>
-                    <div className="text-center font-2xl">{ weatherData ? weatherData.weather[0].description : "<WEATHER SUBHEAD>" }</div>
+                    <div className="text-3xl text-center font-bold">
+                        {weatherData
+                            ? weatherData.weather[0].main
+                            : "<WEATHER>"}
+                    </div>
+                    <div className="text-center font-2xl">
+                        {weatherData
+                            ? weatherData.weather[0].description
+                            : "<WEATHER SUBHEAD>"}
+                    </div>
                     <div className="grid grid-cols-2 pt-4">
                         <div className="flex flex-col items-center p-2">
-                            <div className="text-xl font-bold">{ weatherData ? formatTemp(weatherData.main.temp) : "<X>" }&deg;C</div>
+                            <div className="text-xl font-bold">
+                                {weatherData
+                                    ? formatTemp(weatherData.main.temp)
+                                    : "<X>"}
+                                &deg;C
+                            </div>
                             <div className="font-light font-xl">Temp</div>
                         </div>
                         <div className="flex flex-col items-center p-2">
-                            <div className="text-xl font-bold">{ weatherData ? weatherData.main.humidity : "<X>" }%</div>
+                            <div className="text-xl font-bold">
+                                {weatherData
+                                    ? weatherData.main.humidity
+                                    : "<X>"}
+                                %
+                            </div>
                             <div className="font-light font-xl">Humidity</div>
                         </div>
                     </div>
@@ -58,21 +79,43 @@ const WeatherCard = ({ weatherData }) => {
                         <div className="grid grid-cols-2">
                             <div className="flex items-center justify-between px-2 py-1">
                                 <div className="font-lg uppercase">Temp</div>
-                                <div className="text-lg font-bold">{ weatherData ? formatTemp(weatherData.main.temp) : "<X>" }&deg;C</div>
+                                <div className="text-lg font-bold">
+                                    {weatherData
+                                        ? formatTemp(weatherData.main.temp)
+                                        : "<X>"}
+                                    &deg;C
+                                </div>
                             </div>
                             <div className="flex items-center justify-between px-2 py-1">
                                 <div className="font-lg uppercase">
                                     Feels_Like
                                 </div>
-                                <div className="text-lg font-bold">{ weatherData ? formatTemp(weatherData.main.feels_like) : "<X>" }&deg;C</div>
+                                <div className="text-lg font-bold">
+                                    {weatherData
+                                        ? formatTemp(
+                                              weatherData.main.feels_like
+                                          )
+                                        : "<X>"}
+                                    &deg;C
+                                </div>
                             </div>
                             <div className="flex items-center justify-between px-2 py-1">
                                 <div className="font-lg uppercase">Min</div>
-                                <div className="text-lg font-bold">{ weatherData ? formatTemp(weatherData.main.temp_min) : "<X>" }&deg;C</div>
+                                <div className="text-lg font-bold">
+                                    {weatherData
+                                        ? formatTemp(weatherData.main.temp_min)
+                                        : "<X>"}
+                                    &deg;C
+                                </div>
                             </div>
                             <div className="flex items-center justify-between px-2 py-1">
                                 <div className="font-lg uppercase">Max</div>
-                                <div className="text-lg font-bold">{ weatherData ? formatTemp(weatherData.main.temp_max) : "<X>" }&deg;C</div>
+                                <div className="text-lg font-bold">
+                                    {weatherData
+                                        ? formatTemp(weatherData.main.temp_max)
+                                        : "<X>"}
+                                    &deg;C
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -85,19 +128,32 @@ const WeatherCard = ({ weatherData }) => {
                                 <div className="font-lg uppercase pr-4">
                                     Speed
                                 </div>
-                                <div className="text-lg font-bold">{ weatherData ? weatherData.wind.speed : "<X>" }m/s</div>
+                                <div className="text-lg font-bold">
+                                    {weatherData
+                                        ? weatherData.wind.speed
+                                        : "<X>"}
+                                    m/s
+                                </div>
                             </div>
                             <div className="flex items-center justify-between px-2 py-1">
                                 <div className="font-lg uppercase pr-4">
                                     Degree
                                 </div>
-                                <div className="text-lg font-bold">{ weatherData ? weatherData.wind.deg : "<X>" }&deg;</div>
+                                <div className="text-lg font-bold">
+                                    {weatherData ? weatherData.wind.deg : "<X>"}
+                                    &deg;
+                                </div>
                             </div>
                             <div className="flex items-center justify-between px-2 py-1 col-span-2">
                                 <div className="font-lg uppercase pr-4">
                                     Gust
                                 </div>
-                                <div className="text-lg font-bold">{ weatherData ? weatherData.wind.gust : "<X>" }m/s</div>
+                                <div className="text-lg font-bold">
+                                    {weatherData
+                                        ? weatherData.wind.gust
+                                        : "<X>"}
+                                    m/s
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -110,44 +166,76 @@ const WeatherCard = ({ weatherData }) => {
                                 <div className="font-lg uppercase pr-4">
                                     Pressure
                                 </div>
-                                <div className="text-lg font-bold">{ weatherData ? weatherData.main.pressure : "<X>" }hPa</div>
+                                <div className="text-lg font-bold">
+                                    {weatherData
+                                        ? weatherData.main.pressure
+                                        : "<X>"}
+                                    hPa
+                                </div>
                             </div>
                             <div className="flex items-center justify-between px-2 py-1">
                                 <div className="font-lg uppercase pr-4">
                                     Sea_Level
                                 </div>
-                                <div className="text-lg font-bold">{ weatherData ? weatherData.main.sea_level : "<X>" }hPa</div>
+                                <div className="text-lg font-bold">
+                                    {weatherData
+                                        ? weatherData.main.sea_level
+                                        : "<X>"}
+                                    hPa
+                                </div>
                             </div>
                             <div className="flex items-center justify-between px-2 py-1">
                                 <div className="font-lg uppercase pr-4">
                                     Sunrise
                                 </div>
-                                <div className="text-lg font-bold">{ weatherData ? formatTime(weatherData.sys.sunrise) : "<X>" }</div>
+                                <div className="text-lg font-bold">
+                                    {weatherData
+                                        ? formatTime(weatherData.sys.sunrise)
+                                        : "<X>"}
+                                </div>
                             </div>
                             <div className="flex items-center justify-between px-2 py-1">
                                 <div className="font-lg uppercase pr-4">
                                     Sunset
                                 </div>
-                                <div className="text-lg font-bold">{ weatherData ? formatTime(weatherData.sys.sunset) : "<X>" }</div>
+                                <div className="text-lg font-bold">
+                                    {weatherData
+                                        ? formatTime(weatherData.sys.sunset)
+                                        : "<X>"}
+                                </div>
                             </div>
                             <div className="flex items-center justify-between px-2 py-1">
                                 <div className="font-lg uppercase pr-4">
                                     Visibility
                                 </div>
-                                <div className="text-lg font-bold">{ weatherData ? weatherData.visibility : "<X>" }m</div>
+                                <div className="text-lg font-bold">
+                                    {weatherData
+                                        ? weatherData.visibility
+                                        : "<X>"}
+                                    m
+                                </div>
                             </div>
                             <div className="flex items-center justify-between px-2 py-1">
                                 <div className="font-lg uppercase pr-4">
                                     Clouds
                                 </div>
-                                <div className="text-lg font-bold">{ weatherData ? weatherData.clouds.all : "<X>" }%</div>
+                                <div className="text-lg font-bold">
+                                    {weatherData
+                                        ? weatherData.clouds.all
+                                        : "<X>"}
+                                    %
+                                </div>
                             </div>
                         </div>
                     </section>
                 </div>
             </div>
             <div className="sidebar flex flex-col justify-center">
-                <button onClick={handleExpansion} className="h-full w-full bg-zinc-600/25 hover:bg-zinc-800/25 transition=colors duration-300">
+                <button
+                    aria-label="Expand/Shrink Card"
+                    onClick={handleExpansion}
+                    className="h-full w-full bg-zinc-600/25 hover:bg-zinc-800/25 transition=colors duration-300"
+                >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"

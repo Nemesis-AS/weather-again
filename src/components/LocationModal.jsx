@@ -41,6 +41,7 @@ const LocationModal = ({ dialogRef, setLocation }) => {
                     Pick a location
                 </h1>
                 <button
+                    aria-label="Use Current Location"
                     onClick={useCurrentLocation}
                     className="w-full font-bold text-md bg-zinc-800 text-zinc-200 py-2 rounded-md flex justify-center gap-1"
                     type="submit"
@@ -103,6 +104,7 @@ const LocationModal = ({ dialogRef, setLocation }) => {
                 </div>
 
                 <button
+                    aria-label="Close"
                     onClick={handleClose}
                     className="w-full font-bold text-md bg-zinc-800 text-zinc-200 py-2 rounded-md text-center"
                     type="submit"

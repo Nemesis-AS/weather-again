@@ -5,7 +5,7 @@ const Header = ({ darkMode, toggleDarkMode }) => {
         <header className="px-6 py-4 flex justify-between text-zinc-800 transition-colors duration-300 bg-zinc-400/25 dark:text-zinc-100 shadow-2xl backdrop-blur-md">
             <div className="text-2xl font-black">SomeWeather</div>
 
-            <button onClick={toggleDarkMode}>
+            <button onClick={toggleDarkMode} aria-label="Theme Toggle">
                 {
                     darkMode ? 
                     (

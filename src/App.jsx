@@ -6,7 +6,12 @@ import LocationModal from "./components/LocationModal";
 
 function App() {
     const [darkMode, setDarkMode] = useState(false);
-    const [location, setLocation] = useState({ lat: null, lon: null, city: null, country: null });
+    const [location, setLocation] = useState({
+        lat: null,
+        lon: null,
+        city: null,
+        country: null,
+    });
     const [weatherData, setWeatherData] = useState(null);
 
     const dialog = useRef(null);
@@ -20,7 +25,12 @@ function App() {
     };
 
     const fetchWeatherData = async () => {
-        if ((!location.lat && !location.lon && !location.city && !location.country)) {
+        if (
+            !location.lat &&
+            !location.lon &&
+            !location.city &&
+            !location.country
+        ) {
             if (localStorage.getItem("locationData")) {
                 setLocation(JSON.parse(localStorage.getItem("locationData")));
                 return;
@@ -29,24 +39,27 @@ function App() {
             console.log("No Location Provided!");
             return;
         }
-        
+
         if (location.lat && location.lon) {
             getDataByCoords(location.lat, location.lon);
         } else {
             getDataByCity(location.city, location.country);
         }
-
     };
 
     const getDataByCoords = async (lat, lon) => {
-        const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=66845e6a6fee50dc8f4f2e376703af7d`);
+        const res = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=66845e6a6fee50dc8f4f2e376703af7d`
+        );
         const json = await res.json();
         console.log(json);
         setWeatherData(json);
     };
 
     const getDataByCity = async (city, country) => {
-        const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=66845e6a6fee50dc8f4f2e376703af7d`);
+        const res = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=66845e6a6fee50dc8f4f2e376703af7d`
+        );
         const json = await res.json();
         console.log(json);
         setWeatherData(json);
@@ -57,12 +70,17 @@ function App() {
     }, [location]);
 
     return (
-        <div className={`h-screen flex flex-col bg-[url('./bg.jpg')] dark:bg-[url('./bg-dark.jpeg')] transition-all duration-300 bg-cover bg-center ${darkMode ? "dark" : ""}`}>
+        <div
+            className={`h-screen flex flex-col bg-[url('./bg.jpg')] dark:bg-[url('./bg-dark.jpeg')] transition-all duration-300 bg-cover bg-center ${
+                darkMode ? "dark" : ""
+            }`}
+        >
             <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
             <main className="flex justify-center items-center grow transition-colors duration-300 relative">
                 <WeatherCard weatherData={weatherData} />
 
                 <button
+                    aria-label="Open Location Picker"
                     onClick={openDialog}
                     className="absolute bottom-8 right-8 p-2 border rounded-lg hover:bg-zinc-300/50 dark:border-zinc-200/50 dark:text-zinc-100 dark:hover:bg-zinc-600/50 transition-colors duration-300 bg-zinc-400/25 shadow-2xl backdrop-blur-md"
                 >

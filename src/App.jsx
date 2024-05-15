@@ -49,7 +49,7 @@ function App() {
 
     const getDataByCoords = async (lat, lon) => {
         const res = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=66845e6a6fee50dc8f4f2e376703af7d`
+            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${import.meta.env.VITE_APP_ID}`
         );
         const json = await res.json();
         console.log(json);
@@ -58,7 +58,7 @@ function App() {
 
     const getDataByCity = async (city, country) => {
         const res = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=66845e6a6fee50dc8f4f2e376703af7d`
+            `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${import.meta.env.VITE_APP_ID}`
         );
         const json = await res.json();
         console.log(json);
